@@ -56,14 +56,30 @@
                 </tbody>
             </table>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <pp-login></pp-login>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import NewPizza from './NewPizza.vue'
+    import Login from './Login.vue'
     export default {
         components: {
-            ppNewPizza: NewPizza
+            ppNewPizza: NewPizza,
+            ppLogin: Login
+        },
+        beforeRouteLeave: (to, from, next) => {
+            if (confirm("Have you remembered to log out") == true) {
+                next();
+            } else {
+                next(false);
+            }
         }
+
     }
 </script>
